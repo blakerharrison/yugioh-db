@@ -11,9 +11,17 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        print("Started ⚠️")
+        YGOPRODeckService.getCard(
+            completion: updateView,
+            queryItems: [URLQueryItem(name: "name", value: "Blue-Eyes White Dragon")]
+        )
+    }
+    
+    func updateView() {
+        print("Completed 🔨")
     }
 
-
 }
+
 
