@@ -23,4 +23,7 @@ struct Strings {
     static let description = "Description"
     static let attack = "Attack"
     static let defense = "Defense"
+    
+    //MARK: Errors
+    static let noResultsFound = "No results found."
 }

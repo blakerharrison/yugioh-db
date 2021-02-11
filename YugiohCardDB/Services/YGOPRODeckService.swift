@@ -21,7 +21,6 @@ class YGOPRODeckService {
     private static let host = "db.ygoprodeck.com"
     
     static func fuzzySearch(with search: String, completion: @escaping CardsDataCompletion) {
-        print("Making Network Connection ☃️")
         var urlBuilder = URLComponents()
         urlBuilder.scheme = "https"
         urlBuilder.host = host
@@ -50,12 +49,15 @@ class YGOPRODeckService {
                     let cardsData: CardsData = try decoder.decode(CardsData.self, from: data)
                     completion(cardsData, nil)
                 } catch {
-                    completion(nil, YGOPRODeckError.decodingError)
+                    completion(nil, error)
                 }
             }
         }.resume()
     }
 
+    /*/
+     Currently unused. This will be leveraged in future implementations
+     */
     static func getRandomCard(completion: @escaping CardDataCompletion) {
         var urlBuilder = URLComponents()
         urlBuilder.scheme = "https"
@@ -75,18 +77,14 @@ class YGOPRODeckService {
                 completion(nil, YGOPRODeckError.noData)
               return
             }
-            
-            print("Data-X: \(data)")
-            print("Response-X: \(response)")
-            print("Error-X: \(error)")
-            
-            DispatchQueue.main.async {
+
+            DispatchQueue.global(qos: .userInitiated).async {
                 do {
                     let decoder = JSONDecoder()
                     let cardData: CardData = try decoder.decode(CardData.self, from: data)
                     completion(cardData, nil)
                 } catch {
-                    completion(nil, YGOPRODeckError.decodingError)
+                    completion(nil, YGOPRODeckError.noData)
                 }
             }
         }.resume()

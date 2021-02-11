@@ -14,17 +14,6 @@ class SearchCardViewController: UIViewController {
     var searchTask: DispatchWorkItem?
     var isSearchBarEmpty: Bool { return searchController.searchBar.text?.isEmpty ?? true }
     var isLoading = false
-    
-    //MARK: - Views
-    //MARK: SearchView
-    let searchController = UISearchController(searchResultsController: nil)
-    
-    //MARK: TableView
-    var searchTableView: UITableView = {
-        var tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        return tableView
-    }()
 
     //MARK: - Life Cycle
     override func loadView() {
@@ -33,12 +22,18 @@ class SearchCardViewController: UIViewController {
         setUpConstraints()
       }
 
-    //MARK: - Setups
+    //MARK: Setups
     private func addSubviews() {
         view.addSubview(searchTableView)
+        searchTableView.addSubview(noResultsLabel)
         setupSearchController()
         setupTableView()
         setupSearchView()
+        setupNoResultsLabel()
+    }
+    
+    func setupNoResultsLabel() {
+        noResultsLabel.frame = searchTableView.frame
     }
     
     func setupSearchView() {
@@ -57,7 +52,6 @@ class SearchCardViewController: UIViewController {
     func setupTableView() {
         searchTableView.dataSource = self
         searchTableView.delegate = self
-        searchTableView.separatorStyle = .none
         searchTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
@@ -66,10 +60,63 @@ class SearchCardViewController: UIViewController {
             searchTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             searchTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             searchTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            searchTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            searchTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            noResultsLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            noResultsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
+    
+    //MARK: Views
+    private let searchController = UISearchController(searchResultsController: nil)
 
+    private var searchTableView: UITableView = {
+        var tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
+    
+    private lazy var noResultsLabel: UILabel = {
+        var label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = Strings.noResultsFound
+        label.backgroundColor = .black
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 40)
+        label.isHidden = true
+        return label
+    }()
+    
+    private var activityIndicatorView: UIActivityIndicatorView?
+    
+    //MARK: - Methods
+    
+    private func showActivityIndicator() {
+        if activityIndicatorView == nil {
+            activityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: view.center.x - 25, y: view.center.y - 25, width: 50, height: 50))
+            guard let activityIndicatorView = activityIndicatorView else { return }
+            activityIndicatorView.startAnimating()
+            activityIndicatorView.style = .large
+            view.addSubview(activityIndicatorView)
+        }
+    }
+    
+    private func hideActivityIndicator() {
+        activityIndicatorView = nil
+    }
+
+    private func showEmptyState() {
+        noResultsLabel.isHidden = false
+        searchTableView.separatorStyle = .none
+        searchTableView.isUserInteractionEnabled = false
+    }
+    
+    private func hideEmptyState() {
+        noResultsLabel.isHidden = true
+        searchTableView.separatorStyle = .singleLine
+        searchTableView.isUserInteractionEnabled = true
+    }
+    
     private func buildViewModels(cardsData: CardsData?, error: Error?) {
         guard let cardsData = cardsData else {
             handleError(error)
@@ -103,11 +150,11 @@ class SearchCardViewController: UIViewController {
     
     func handleError(_ error: Error? = nil) {
         searchResults.removeAll()
+        isLoading = false
         DispatchQueue.main.async { [weak self] in
             self?.searchTableView.reloadData()
-            self?.isLoading = false
+            self?.showEmptyState()
         }
-        print("Error - \(error)")
     }
 }
 
@@ -122,8 +169,11 @@ extension SearchCardViewController: UITableViewDataSource {
     let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cellId")
 
     if !searchResults.isEmpty {
+        hideEmptyState()
         cell.textLabel?.text = searchResults[indexPath.row].name
         cell.detailTextLabel?.text = searchResults[indexPath.row].displayTypeName
+    } else {
+        showEmptyState()
     }
     
     return cell
@@ -151,6 +201,7 @@ extension SearchCardViewController: UITableViewDelegate {
 extension SearchCardViewController: UISearchResultsUpdating {
     
   func updateSearchResults(for searchController: UISearchController) {
+    
     if !isSearchBarEmpty {
         searchResults.removeAll()
         searchTask?.cancel()

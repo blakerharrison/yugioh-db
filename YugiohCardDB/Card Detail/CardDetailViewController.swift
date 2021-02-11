@@ -28,6 +28,13 @@ class CardDetailViewController: UIViewController {
         .description,
     ]
     
+    enum CardDetailsCellId: String {
+        case cardImageCell
+        case textWithDescriptionCell
+        case twoTopTitlesAndTwoDescriptionsTableViewCell
+        case detailTextWithDescriptionCell
+    }
+    
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,13 +106,6 @@ extension CardDetailViewController: UITableViewDelegate {
 extension CardDetailViewController {
     
     func getConfiguredCell(with tableView: UITableView, cardDetailCellType: CardDetailCellType, viewModel: CardViewModel, indexPath: IndexPath) -> UITableViewCell {
-        
-        enum CardDetailsCellId: String {
-            case cardImageCell
-            case textWithDescriptionCell
-            case twoTopTitlesAndTwoDescriptionsTableViewCell
-            case detailTextWithDescriptionCell
-        }
         
         switch cardDetailCellType {
         

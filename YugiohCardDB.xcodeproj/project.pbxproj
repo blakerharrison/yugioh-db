@@ -20,7 +20,6 @@
 		7321CE2BA2EC87E3BC54515E /* Pods_YugiohCardDB_YugiohCardDBUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93ED5A3A673406F15D325FD4 /* Pods_YugiohCardDB_YugiohCardDBUITests.framework */; };
 		9B22E0D7E0076053D8A955A2 /* Pods_YugiohCardDBTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C834B826A06BD0888CCBAB1 /* Pods_YugiohCardDBTests.framework */; };
 		AC172E4E25D3EAE500D3F10E /* CardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC172E4D25D3EAE500D3F10E /* CardDetailViewController.swift */; };
-		AC6EE6DD25D4949000C4A1CA /* CardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6EE6DC25D4949000C4A1CA /* CardDetailView.swift */; };
 		AC6EE6E625D49C5800C4A1CA /* CardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6EE6E525D49C5800C4A1CA /* CardType.swift */; };
 		AC6EE6EF25D4C5F200C4A1CA /* CardImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6EE6EE25D4C5F200C4A1CA /* CardImageTableViewCell.swift */; };
 		AC6EE6F725D4DF1700C4A1CA /* TopTitleWithDescriptionTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6EE6F625D4DF1700C4A1CA /* TopTitleWithDescriptionTextTableViewCell.swift */; };
@@ -71,7 +70,6 @@
 		8F921C0F9AB5AD6EEBE7FF5A /* Pods-YugiohCardDB.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YugiohCardDB.release.xcconfig"; path = "Target Support Files/Pods-YugiohCardDB/Pods-YugiohCardDB.release.xcconfig"; sourceTree = "<group>"; };
 		93ED5A3A673406F15D325FD4 /* Pods_YugiohCardDB_YugiohCardDBUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YugiohCardDB_YugiohCardDBUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC172E4D25D3EAE500D3F10E /* CardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailViewController.swift; sourceTree = "<group>"; };
-		AC6EE6DC25D4949000C4A1CA /* CardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailView.swift; sourceTree = "<group>"; };
 		AC6EE6E525D49C5800C4A1CA /* CardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardType.swift; sourceTree = "<group>"; };
 		AC6EE6EE25D4C5F200C4A1CA /* CardImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImageTableViewCell.swift; sourceTree = "<group>"; };
 		AC6EE6F625D4DF1700C4A1CA /* TopTitleWithDescriptionTextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTitleWithDescriptionTextTableViewCell.swift; sourceTree = "<group>"; };
@@ -234,7 +232,6 @@
 			isa = PBXGroup;
 			children = (
 				AC6EE6ED25D4C5BF00C4A1CA /* TableViewCells */,
-				AC6EE6DC25D4949000C4A1CA /* CardDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -499,7 +496,6 @@
 				AC172E4E25D3EAE500D3F10E /* CardDetailViewController.swift in Sources */,
 				AC6EE6F725D4DF1700C4A1CA /* TopTitleWithDescriptionTextTableViewCell.swift in Sources */,
 				AC6EE70125D5124E00C4A1CA /* CardDetailCellType.swift in Sources */,
-				AC6EE6DD25D4949000C4A1CA /* CardDetailView.swift in Sources */,
 				AC6EE6E625D49C5800C4A1CA /* CardType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
