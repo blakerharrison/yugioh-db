@@ -36,23 +36,28 @@ class SearchCardViewController: UIViewController {
     //MARK: - Setups
     private func addSubviews() {
         view.addSubview(searchTableView)
+        setupSearchController()
         setupTableView()
         setupSearchView()
     }
     
     func setupSearchView() {
+        navigationItem.searchController = searchController
+        navigationItem.title = Strings.yugiohDb
+        definesPresentationContext = true
+    }
+    
+    func setupSearchController() {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Cards"
-        navigationItem.searchController = searchController
-        navigationItem.title = "YugiohDB"
-        definesPresentationContext = true
+        searchController.searchBar.placeholder = Strings.searchCards
         searchController.searchBar.returnKeyType = .done
     }
     
     func setupTableView() {
         searchTableView.dataSource = self
         searchTableView.delegate = self
+        searchTableView.separatorStyle = .none
         searchTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
@@ -133,9 +138,6 @@ extension SearchCardViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         if !isLoading {
-//            let cardDetailVC = CardDetailViewController()
-//            cardDetailVC.cardViewModel = searchResults[indexPath.row]
-//            navigationController?.pushViewController(cardDetailVC, animated: true)
             searchController.searchBar.resignFirstResponder()
             let cardDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "cardDetailViewController") as! CardDetailViewController
             cardDetailVC.cardViewModel = searchResults[indexPath.row]
