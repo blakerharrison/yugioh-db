@@ -7,6 +7,9 @@ An iOS application for searching and displaying card details from the popular 90
 - Search
 - Display Card Details
 
+### Screenshot
+![Alt Text](https://media.giphy.com/media/lGfsW2vf3DqguJAxhx/giphy.gif)
+
 #### TODO
 - [ ] Stylize launch screen
 
