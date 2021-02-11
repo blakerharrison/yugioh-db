@@ -10,14 +10,14 @@ An iOS application for searching and displaying card details from the popular 90
 #### TODO
 - [ ] Stylize launch screen
 
-- [] Add app icon
+- [ ] Add app icon
 
-- [] SearchCardViewController
-	- [] Add loading Indicator
-	- [] Create initial search view 
-	- [] Group similar method executions together
+- [ ] SearchCardViewController
+	- [ ] Add loading Indicator
+	- [ ] Create initial search view 
+	- [ ] Group similar method executions together
 	
-- [] CardsDetailView
-	- [] Add loading indicator for image (Shimmer)
+- [ ] CardsDetailView
+	- [ ] Add loading indicator for image (Shimmer)
 
-- [] Move "Magic Numbers" to a Struct
+- [ ] Move "Magic Numbers" to a Struct
