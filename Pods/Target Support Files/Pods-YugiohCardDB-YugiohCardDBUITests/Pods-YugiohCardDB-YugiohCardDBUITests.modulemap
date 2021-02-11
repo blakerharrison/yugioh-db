@@ -1,0 +1,6 @@
+framework module Pods_YugiohCardDB_YugiohCardDBUITests {
+  umbrella header "Pods-YugiohCardDB-YugiohCardDBUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

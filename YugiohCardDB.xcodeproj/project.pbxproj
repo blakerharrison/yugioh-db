@@ -3,13 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		2C5249B425BFA80E00461C37 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5249B325BFA80E00461C37 /* AppDelegate.swift */; };
 		2C5249B625BFA80E00461C37 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5249B525BFA80E00461C37 /* SceneDelegate.swift */; };
-		2C5249B825BFA80E00461C37 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5249B725BFA80E00461C37 /* ViewController.swift */; };
+		2C5249B825BFA80E00461C37 /* SearchCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5249B725BFA80E00461C37 /* SearchCardViewController.swift */; };
 		2C5249BB25BFA80E00461C37 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C5249B925BFA80E00461C37 /* Main.storyboard */; };
 		2C5249BD25BFA81100461C37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C5249BC25BFA81100461C37 /* Assets.xcassets */; };
 		2C5249C025BFA81100461C37 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C5249BE25BFA81100461C37 /* LaunchScreen.storyboard */; };
@@ -17,6 +17,14 @@
 		2C5249D625BFA81100461C37 /* YugiohCardDBUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5249D525BFA81100461C37 /* YugiohCardDBUITests.swift */; };
 		2C5249E825BFBB1500461C37 /* YGOPRODeckService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5249E725BFBB1500461C37 /* YGOPRODeckService.swift */; };
 		2C5249F125BFBB9500461C37 /* CardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5249F025BFBB9500461C37 /* CardData.swift */; };
+		7321CE2BA2EC87E3BC54515E /* Pods_YugiohCardDB_YugiohCardDBUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93ED5A3A673406F15D325FD4 /* Pods_YugiohCardDB_YugiohCardDBUITests.framework */; };
+		9B22E0D7E0076053D8A955A2 /* Pods_YugiohCardDBTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C834B826A06BD0888CCBAB1 /* Pods_YugiohCardDBTests.framework */; };
+		AC172E4E25D3EAE500D3F10E /* CardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC172E4D25D3EAE500D3F10E /* CardDetailViewController.swift */; };
+		AC6EE6DD25D4949000C4A1CA /* CardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6EE6DC25D4949000C4A1CA /* CardDetailView.swift */; };
+		AC6EE6E625D49C5800C4A1CA /* CardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6EE6E525D49C5800C4A1CA /* CardType.swift */; };
+		AC6EE6EF25D4C5F200C4A1CA /* CardImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6EE6EE25D4C5F200C4A1CA /* CardImageTableViewCell.swift */; };
+		ACB38F1925D39F49001CA4E9 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB38F1825D39F49001CA4E9 /* CardViewModel.swift */; };
+		D4CA2034DAF863D18B677D3D /* Pods_YugiohCardDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E854AF209D9C54AE318CAC6F /* Pods_YugiohCardDB.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +48,7 @@
 		2C5249B025BFA80E00461C37 /* YugiohCardDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YugiohCardDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C5249B325BFA80E00461C37 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C5249B525BFA80E00461C37 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2C5249B725BFA80E00461C37 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2C5249B725BFA80E00461C37 /* SearchCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCardViewController.swift; sourceTree = "<group>"; };
 		2C5249BA25BFA80E00461C37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2C5249BC25BFA81100461C37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C5249BF25BFA81100461C37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -53,6 +61,20 @@
 		2C5249D725BFA81100461C37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C5249E725BFBB1500461C37 /* YGOPRODeckService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YGOPRODeckService.swift; sourceTree = "<group>"; };
 		2C5249F025BFBB9500461C37 /* CardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardData.swift; sourceTree = "<group>"; };
+		400E9F99DD01D2E898692F4D /* Pods-YugiohCardDB-YugiohCardDBUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YugiohCardDB-YugiohCardDBUITests.debug.xcconfig"; path = "Target Support Files/Pods-YugiohCardDB-YugiohCardDBUITests/Pods-YugiohCardDB-YugiohCardDBUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		7A151FDEFF17A0ED0BD7FF67 /* Pods-YugiohCardDB-YugiohCardDBUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YugiohCardDB-YugiohCardDBUITests.release.xcconfig"; path = "Target Support Files/Pods-YugiohCardDB-YugiohCardDBUITests/Pods-YugiohCardDB-YugiohCardDBUITests.release.xcconfig"; sourceTree = "<group>"; };
+		7C834B826A06BD0888CCBAB1 /* Pods_YugiohCardDBTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YugiohCardDBTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F921C0F9AB5AD6EEBE7FF5A /* Pods-YugiohCardDB.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YugiohCardDB.release.xcconfig"; path = "Target Support Files/Pods-YugiohCardDB/Pods-YugiohCardDB.release.xcconfig"; sourceTree = "<group>"; };
+		93ED5A3A673406F15D325FD4 /* Pods_YugiohCardDB_YugiohCardDBUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YugiohCardDB_YugiohCardDBUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC172E4D25D3EAE500D3F10E /* CardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailViewController.swift; sourceTree = "<group>"; };
+		AC6EE6DC25D4949000C4A1CA /* CardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailView.swift; sourceTree = "<group>"; };
+		AC6EE6E525D49C5800C4A1CA /* CardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardType.swift; sourceTree = "<group>"; };
+		AC6EE6EE25D4C5F200C4A1CA /* CardImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImageTableViewCell.swift; sourceTree = "<group>"; };
+		ACB38F1825D39F49001CA4E9 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
+		DCB7477B82C8B7F70ECE979F /* Pods-YugiohCardDBTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YugiohCardDBTests.debug.xcconfig"; path = "Target Support Files/Pods-YugiohCardDBTests/Pods-YugiohCardDBTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E80B4B8014D4B4CCC1358178 /* Pods-YugiohCardDB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YugiohCardDB.debug.xcconfig"; path = "Target Support Files/Pods-YugiohCardDB/Pods-YugiohCardDB.debug.xcconfig"; sourceTree = "<group>"; };
+		E854AF209D9C54AE318CAC6F /* Pods_YugiohCardDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YugiohCardDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F62648F56A3AF54C0E0AD364 /* Pods-YugiohCardDBTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YugiohCardDBTests.release.xcconfig"; path = "Target Support Files/Pods-YugiohCardDBTests/Pods-YugiohCardDBTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4CA2034DAF863D18B677D3D /* Pods_YugiohCardDB.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B22E0D7E0076053D8A955A2 /* Pods_YugiohCardDBTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,12 +98,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7321CE2BA2EC87E3BC54515E /* Pods_YugiohCardDB_YugiohCardDBUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0943CCA6C9A28BBEF85D246E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E854AF209D9C54AE318CAC6F /* Pods_YugiohCardDB.framework */,
+				93ED5A3A673406F15D325FD4 /* Pods_YugiohCardDB_YugiohCardDBUITests.framework */,
+				7C834B826A06BD0888CCBAB1 /* Pods_YugiohCardDBTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1E8CB0F9C038AB3C54E2BCE8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E80B4B8014D4B4CCC1358178 /* Pods-YugiohCardDB.debug.xcconfig */,
+				8F921C0F9AB5AD6EEBE7FF5A /* Pods-YugiohCardDB.release.xcconfig */,
+				400E9F99DD01D2E898692F4D /* Pods-YugiohCardDB-YugiohCardDBUITests.debug.xcconfig */,
+				7A151FDEFF17A0ED0BD7FF67 /* Pods-YugiohCardDB-YugiohCardDBUITests.release.xcconfig */,
+				DCB7477B82C8B7F70ECE979F /* Pods-YugiohCardDBTests.debug.xcconfig */,
+				F62648F56A3AF54C0E0AD364 /* Pods-YugiohCardDBTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		2C5249A725BFA80E00461C37 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +135,8 @@
 				2C5249C925BFA81100461C37 /* YugiohCardDBTests */,
 				2C5249D425BFA81100461C37 /* YugiohCardDBUITests */,
 				2C5249B125BFA80E00461C37 /* Products */,
+				1E8CB0F9C038AB3C54E2BCE8 /* Pods */,
+				0943CCA6C9A28BBEF85D246E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,11 +153,12 @@
 		2C5249B225BFA80E00461C37 /* YugiohCardDB */ = {
 			isa = PBXGroup;
 			children = (
+				AC172E4C25D3EABA00D3F10E /* Card Detail */,
+				AC172E4825D3EA4300D3F10E /* Card Search */,
 				2C5249EF25BFBB8000461C37 /* Models */,
 				2C5249E625BFBB0000461C37 /* Services */,
 				2C5249B325BFA80E00461C37 /* AppDelegate.swift */,
 				2C5249B525BFA80E00461C37 /* SceneDelegate.swift */,
-				2C5249B725BFA80E00461C37 /* ViewController.swift */,
 				2C5249B925BFA80E00461C37 /* Main.storyboard */,
 				2C5249BC25BFA81100461C37 /* Assets.xcassets */,
 				2C5249BE25BFA81100461C37 /* LaunchScreen.storyboard */,
@@ -146,8 +197,44 @@
 			isa = PBXGroup;
 			children = (
 				2C5249F025BFBB9500461C37 /* CardData.swift */,
+				ACB38F1825D39F49001CA4E9 /* CardViewModel.swift */,
+				AC6EE6E525D49C5800C4A1CA /* CardType.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		AC172E4825D3EA4300D3F10E /* Card Search */ = {
+			isa = PBXGroup;
+			children = (
+				2C5249B725BFA80E00461C37 /* SearchCardViewController.swift */,
+			);
+			path = "Card Search";
+			sourceTree = "<group>";
+		};
+		AC172E4C25D3EABA00D3F10E /* Card Detail */ = {
+			isa = PBXGroup;
+			children = (
+				AC172E4D25D3EAE500D3F10E /* CardDetailViewController.swift */,
+				AC6EE6E125D4949800C4A1CA /* Views */,
+			);
+			path = "Card Detail";
+			sourceTree = "<group>";
+		};
+		AC6EE6E125D4949800C4A1CA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AC6EE6ED25D4C5BF00C4A1CA /* TableViewCells */,
+				AC6EE6DC25D4949000C4A1CA /* CardDetailView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AC6EE6ED25D4C5BF00C4A1CA /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				AC6EE6EE25D4C5F200C4A1CA /* CardImageTableViewCell.swift */,
+			);
+			path = TableViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,9 +244,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C5249DA25BFA81100461C37 /* Build configuration list for PBXNativeTarget "YugiohCardDB" */;
 			buildPhases = (
+				E3A7B0ED36457E9E71F72D52 /* [CP] Check Pods Manifest.lock */,
 				2C5249AC25BFA80E00461C37 /* Sources */,
 				2C5249AD25BFA80E00461C37 /* Frameworks */,
 				2C5249AE25BFA80E00461C37 /* Resources */,
+				FF62B5BEDBC02C96F462DD47 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -174,6 +263,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C5249DD25BFA81100461C37 /* Build configuration list for PBXNativeTarget "YugiohCardDBTests" */;
 			buildPhases = (
+				ACB18F453862F2D16A550644 /* [CP] Check Pods Manifest.lock */,
 				2C5249C225BFA81100461C37 /* Sources */,
 				2C5249C325BFA81100461C37 /* Frameworks */,
 				2C5249C425BFA81100461C37 /* Resources */,
@@ -192,9 +282,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C5249E025BFA81100461C37 /* Build configuration list for PBXNativeTarget "YugiohCardDBUITests" */;
 			buildPhases = (
+				7F2E005C61AD861BBECCA10A /* [CP] Check Pods Manifest.lock */,
 				2C5249CD25BFA81100461C37 /* Sources */,
 				2C5249CE25BFA81100461C37 /* Frameworks */,
 				2C5249CF25BFA81100461C37 /* Resources */,
+				A0F777E122AD2192FF85A54D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -275,16 +367,124 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7F2E005C61AD861BBECCA10A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YugiohCardDB-YugiohCardDBUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A0F777E122AD2192FF85A54D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YugiohCardDB-YugiohCardDBUITests/Pods-YugiohCardDB-YugiohCardDBUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YugiohCardDB-YugiohCardDBUITests/Pods-YugiohCardDB-YugiohCardDBUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YugiohCardDB-YugiohCardDBUITests/Pods-YugiohCardDB-YugiohCardDBUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ACB18F453862F2D16A550644 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YugiohCardDBTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E3A7B0ED36457E9E71F72D52 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YugiohCardDB-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FF62B5BEDBC02C96F462DD47 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YugiohCardDB/Pods-YugiohCardDB-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YugiohCardDB/Pods-YugiohCardDB-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YugiohCardDB/Pods-YugiohCardDB-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2C5249AC25BFA80E00461C37 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				2C5249F125BFBB9500461C37 /* CardData.swift in Sources */,
-				2C5249B825BFA80E00461C37 /* ViewController.swift in Sources */,
+				AC6EE6EF25D4C5F200C4A1CA /* CardImageTableViewCell.swift in Sources */,
+				2C5249B825BFA80E00461C37 /* SearchCardViewController.swift in Sources */,
+				ACB38F1925D39F49001CA4E9 /* CardViewModel.swift in Sources */,
 				2C5249B425BFA80E00461C37 /* AppDelegate.swift in Sources */,
 				2C5249E825BFBB1500461C37 /* YGOPRODeckService.swift in Sources */,
 				2C5249B625BFA80E00461C37 /* SceneDelegate.swift in Sources */,
+				AC172E4E25D3EAE500D3F10E /* CardDetailViewController.swift in Sources */,
+				AC6EE6DD25D4949000C4A1CA /* CardDetailView.swift in Sources */,
+				AC6EE6E625D49C5800C4A1CA /* CardType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,11 +657,12 @@
 		};
 		2C5249DB25BFA81100461C37 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E80B4B8014D4B4CCC1358178 /* Pods-YugiohCardDB.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MA84G22696;
+				DEVELOPMENT_TEAM = X6JEFR9PZZ;
 				INFOPLIST_FILE = YugiohCardDB/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -476,11 +677,12 @@
 		};
 		2C5249DC25BFA81100461C37 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8F921C0F9AB5AD6EEBE7FF5A /* Pods-YugiohCardDB.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MA84G22696;
+				DEVELOPMENT_TEAM = X6JEFR9PZZ;
 				INFOPLIST_FILE = YugiohCardDB/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -495,6 +697,7 @@
 		};
 		2C5249DE25BFA81100461C37 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DCB7477B82C8B7F70ECE979F /* Pods-YugiohCardDBTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -517,6 +720,7 @@
 		};
 		2C5249DF25BFA81100461C37 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F62648F56A3AF54C0E0AD364 /* Pods-YugiohCardDBTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -539,6 +743,7 @@
 		};
 		2C5249E125BFA81100461C37 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 400E9F99DD01D2E898692F4D /* Pods-YugiohCardDB-YugiohCardDBUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -559,6 +764,7 @@
 		};
 		2C5249E225BFA81100461C37 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7A151FDEFF17A0ED0BD7FF67 /* Pods-YugiohCardDB-YugiohCardDBUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
