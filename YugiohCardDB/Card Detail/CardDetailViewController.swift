@@ -34,6 +34,7 @@ class CardDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
+        navigationItem.title = "Card Details"
         addSubviewes()
         setupTableView()
     }
@@ -58,6 +59,7 @@ class CardDetailViewController: UIViewController {
         cardDetailTableView.register(CardImageTableViewCell.self, forCellReuseIdentifier: "cardImageCell")
         cardDetailTableView.register(TopTitleWithDescriptionTextTableViewCell.self, forCellReuseIdentifier: "textWithDescriptionCell")
         cardDetailTableView.register(TwoTopTitlesAndTwoDescriptionsTableViewCell.self, forCellReuseIdentifier: "twoTopTitlesAndTwoDescriptionsTableViewCell")
+        cardDetailTableView.register(TopTitleWithDescriptionTextTableViewCell.self, forCellReuseIdentifier: "detailTextWithDescriptionCell")
         
         let cardImageTableViewCell = CardImageTableViewCell()
         cardDetailCells.append(cardImageTableViewCell)
@@ -66,6 +68,8 @@ class CardDetailViewController: UIViewController {
         let twoTopTitlesAndTwoDescriptionsTableViewCell = TwoTopTitlesAndTwoDescriptionsTableViewCell()
         cardDetailCells.append(twoTopTitlesAndTwoDescriptionsTableViewCell)
         cardDetailCells.append(twoTopTitlesAndTwoDescriptionsTableViewCell)
+        cardDetailCells.append(twoTopTitlesAndTwoDescriptionsTableViewCell)
+        cardDetailCells.append(topTitleWithDescriptionCell)
         cardDetailTableView.reloadData()
         
     }
@@ -79,7 +83,7 @@ extension CardDetailViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let viewModel = cardViewModel else { return UITableViewCell() }
+        guard var viewModel = cardViewModel else { return UITableViewCell() }
         if cardDetailCells.isEmpty == false {
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "cardImageCell", for: indexPath) as! CardImageTableViewCell
@@ -99,6 +103,16 @@ extension CardDetailViewController: UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "twoTopTitlesAndTwoDescriptionsTableViewCell", for: indexPath) as! TwoTopTitlesAndTwoDescriptionsTableViewCell
                 if let race = viewModel.race {
                     cell.updateText(leftTitle: "Race", leftDescription: race, rightTitle: "Type", rightTitleDescription: viewModel.displayTypeName)
+                }
+                return cell
+            } else if indexPath.row == 4 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "detailTextWithDescriptionCell", for: indexPath) as! TopTitleWithDescriptionTextTableViewCell
+                cell.updateText(with: "Description", description: viewModel.description, styleAsHeader: false)
+                return cell
+            } else if indexPath.row == 5 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "twoTopTitlesAndTwoDescriptionsTableViewCell", for: indexPath) as! TwoTopTitlesAndTwoDescriptionsTableViewCell
+                if let attack = viewModel.attack, let defense = viewModel.defense {
+                    cell.updateText(leftTitle: "Attack", leftDescription: viewModel.attackString, rightTitle: "Defense", rightTitleDescription: viewModel.defenseString)
                 }
                 return cell
             }

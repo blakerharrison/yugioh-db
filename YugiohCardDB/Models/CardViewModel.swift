@@ -43,4 +43,13 @@ struct CardViewModel {
     
     lazy var hasAttackAndDefenseStatistics = attack == nil || defense == nil ? false : true
     
+    lazy var attackString: String = {
+        if let attack = attack { return String(attack) }
+        return ""
+    }()
+    
+    lazy var defenseString: String = {
+        if let defense = defense { return String(defense) }
+        return ""
+    }()
 }
