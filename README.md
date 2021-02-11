@@ -24,3 +24,7 @@ An iOS application for searching and displaying card details from the popular 90
 	- [ ] Add loading indicator for image (Shimmer)
 
 - [ ] Move "Magic Numbers" to a Struct
+
+- [ ] Add Unit Test
+
+- [ ] Improve MVVM Architecture
