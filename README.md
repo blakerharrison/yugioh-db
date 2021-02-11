@@ -8,7 +8,7 @@ An iOS application for searching and displaying card details from the popular 90
 - Display Card Details
 
 #### TODO
-- [] Stylize launch screen
+- [ ] Stylize launch screen
 
 - [] Add app icon
 
