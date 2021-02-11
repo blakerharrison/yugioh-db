@@ -11,26 +11,24 @@ class CardDetailViewController: UIViewController {
 
     //MARK: - Properties
     var cardViewModel: CardViewModel?
+
+    private let monsterCardDetailsCells: [CardDetailCellType] = [
+        .image,
+        .name,
+        .levelAndAttribute,
+        .raceAndType,
+        .description,
+        .attackAndDefense
+    ]
     
-    let cellId = "cellId"
+    private let spellOrTrapCardDetailsCells: [CardDetailCellType] = [
+        .image,
+        .name,
+        .raceAndType,
+        .description,
+    ]
     
-    var cardDetailCells: [UITableViewCell] = []
-    
-    //MARK: - Views
-    private var cardImageView: UIImageView = {
-        var imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
-    
-    //MARK: TableView
-    var cardDetailTableView: UITableView = {
-        var tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        return tableView
-    }()
-    
+    //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
@@ -39,96 +37,109 @@ class CardDetailViewController: UIViewController {
         setupTableView()
     }
     
-    func addSubviewes() {
-//        view.addSubview(cardImageView)
+    //MARK: - Methods
+    //MARK: Setup
+    private func addSubviewes() {
         view.addSubview(cardDetailTableView)
     }
     
-    func setupTableView() {
+    private func setupTableView() {
         cardDetailTableView.frame = view.safeAreaLayoutGuide.layoutFrame
         cardDetailTableView.dataSource = self
         cardDetailTableView.delegate = self
         cardDetailTableView.allowsSelection = false
         cardDetailTableView.showsVerticalScrollIndicator = false
         cardDetailTableView.separatorStyle = .none
-        setupCells()
+        registerCells()
     }
     
-    func setupCells() {
+    private func registerCells() {
         cardDetailTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         cardDetailTableView.register(CardImageTableViewCell.self, forCellReuseIdentifier: "cardImageCell")
         cardDetailTableView.register(TopTitleWithDescriptionTextTableViewCell.self, forCellReuseIdentifier: "textWithDescriptionCell")
         cardDetailTableView.register(TwoTopTitlesAndTwoDescriptionsTableViewCell.self, forCellReuseIdentifier: "twoTopTitlesAndTwoDescriptionsTableViewCell")
         cardDetailTableView.register(TopTitleWithDescriptionTextTableViewCell.self, forCellReuseIdentifier: "detailTextWithDescriptionCell")
-        
-        let cardImageTableViewCell = CardImageTableViewCell()
-        cardDetailCells.append(cardImageTableViewCell)
-        let topTitleWithDescriptionCell = TopTitleWithDescriptionTextTableViewCell()
-        cardDetailCells.append(topTitleWithDescriptionCell)
-        let twoTopTitlesAndTwoDescriptionsTableViewCell = TwoTopTitlesAndTwoDescriptionsTableViewCell()
-        cardDetailCells.append(twoTopTitlesAndTwoDescriptionsTableViewCell)
-        cardDetailCells.append(twoTopTitlesAndTwoDescriptionsTableViewCell)
-        cardDetailCells.append(twoTopTitlesAndTwoDescriptionsTableViewCell)
-        cardDetailCells.append(topTitleWithDescriptionCell)
-        cardDetailTableView.reloadData()
-        
     }
+    
+    //MARK: Views
+    private var cardDetailTableView: UITableView = {
+        var tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
     
 }
 
+// MARK: - UITableViewDataSource
 extension CardDetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cardDetailCells.count
+        return cardViewModel?.type == CardType.monster ? monsterCardDetailsCells.count : spellOrTrapCardDetailsCells.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard var viewModel = cardViewModel else { return UITableViewCell() }
-        if cardDetailCells.isEmpty == false {
-            if indexPath.row == 0 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "cardImageCell", for: indexPath) as! CardImageTableViewCell
-                cell.loadImage(with: viewModel.imageUrl)
-                return cell
-            } else if indexPath.row == 1 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "textWithDescriptionCell", for: indexPath) as! TopTitleWithDescriptionTextTableViewCell
-                cell.updateText(with: "Name", description: viewModel.name, styleAsHeader: true)
-                return cell
-            } else if indexPath.row == 2 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "twoTopTitlesAndTwoDescriptionsTableViewCell", for: indexPath) as! TwoTopTitlesAndTwoDescriptionsTableViewCell
-                if let level = viewModel.level, let attribute = viewModel.attribute {
-                    cell.updateText(leftTitle: "Level", leftDescription: String(level), rightTitle: "Attribute", rightTitleDescription: attribute)
-                }
-                return cell
-            } else if indexPath.row == 3 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "twoTopTitlesAndTwoDescriptionsTableViewCell", for: indexPath) as! TwoTopTitlesAndTwoDescriptionsTableViewCell
-                if let race = viewModel.race {
-                    cell.updateText(leftTitle: "Race", leftDescription: race, rightTitle: "Type", rightTitleDescription: viewModel.displayTypeName)
-                }
-                return cell
-            } else if indexPath.row == 4 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "detailTextWithDescriptionCell", for: indexPath) as! TopTitleWithDescriptionTextTableViewCell
-                cell.updateText(with: "Description", description: viewModel.description, styleAsHeader: false)
-                return cell
-            } else if indexPath.row == 5 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "twoTopTitlesAndTwoDescriptionsTableViewCell", for: indexPath) as! TwoTopTitlesAndTwoDescriptionsTableViewCell
-                if let attack = viewModel.attack, let defense = viewModel.defense {
-                    cell.updateText(leftTitle: "Attack", leftDescription: viewModel.attackString, rightTitle: "Defense", rightTitleDescription: viewModel.defenseString)
-                }
-                return cell
-            }
-        }
-        return UITableViewCell()
+        guard let viewModel = cardViewModel else { return UITableViewCell() }
+        let cellTypes = viewModel.type == CardType.monster ? monsterCardDetailsCells : spellOrTrapCardDetailsCells
+        return getConfiguredCell(with: tableView, cardDetailCellType: cellTypes[indexPath.row], viewModel: viewModel, indexPath: indexPath)
     }
 
 }
 
+// MARK: - UITableViewDelegate
 extension CardDetailViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if cardDetailCells.isEmpty == false {
-            if indexPath.row == 0 { return view.safeAreaLayoutGuide.layoutFrame.height }
-        }
+        if monsterCardDetailsCells[indexPath.row] == .image { return view.safeAreaLayoutGuide.layoutFrame.height }
         return tableView.intrinsicContentSize.height
+    }
+    
+}
+
+// MARK: - Cell Configuration
+extension CardDetailViewController {
+    
+    func getConfiguredCell(with tableView: UITableView, cardDetailCellType: CardDetailCellType, viewModel: CardViewModel, indexPath: IndexPath) -> UITableViewCell {
+        
+        enum CardDetailsCellId: String {
+            case cardImageCell
+            case textWithDescriptionCell
+            case twoTopTitlesAndTwoDescriptionsTableViewCell
+            case detailTextWithDescriptionCell
+        }
+        
+        switch cardDetailCellType {
+        
+        case .image:
+            let cell = tableView.dequeueReusableCell(withIdentifier: CardDetailsCellId.cardImageCell.rawValue, for: indexPath) as! CardImageTableViewCell
+            cell.loadImage(with: viewModel.imageUrl)
+            return cell
+            
+        case .name:
+            let cell = tableView.dequeueReusableCell(withIdentifier: CardDetailsCellId.textWithDescriptionCell.rawValue, for: indexPath) as! TopTitleWithDescriptionTextTableViewCell
+            cell.updateText(with: Strings.name, description: viewModel.name, styleAsHeader: true)
+            return cell
+            
+        case .levelAndAttribute:
+            let cell = tableView.dequeueReusableCell(withIdentifier: CardDetailsCellId.twoTopTitlesAndTwoDescriptionsTableViewCell.rawValue, for: indexPath) as! TwoTopTitlesAndTwoDescriptionsTableViewCell
+            if let level = viewModel.level, let attribute = viewModel.attribute { cell.updateText(leftTitle: Strings.level, leftDescription: String(level), rightTitle: Strings.attribute, rightTitleDescription: attribute) }
+            return cell
+            
+        case .raceAndType:
+            let cell = tableView.dequeueReusableCell(withIdentifier: CardDetailsCellId.twoTopTitlesAndTwoDescriptionsTableViewCell.rawValue, for: indexPath) as! TwoTopTitlesAndTwoDescriptionsTableViewCell
+            if let race = viewModel.race { cell.updateText(leftTitle: Strings.race, leftDescription: race, rightTitle: Strings.type, rightTitleDescription: viewModel.displayTypeName) }
+            return cell
+            
+        case .description:
+            let cell = tableView.dequeueReusableCell(withIdentifier: CardDetailsCellId.detailTextWithDescriptionCell.rawValue, for: indexPath) as! TopTitleWithDescriptionTextTableViewCell
+            cell.updateText(with: Strings.description, description: viewModel.description)
+            return cell
+            
+        case .attackAndDefense:
+            let cell = tableView.dequeueReusableCell(withIdentifier: CardDetailsCellId.twoTopTitlesAndTwoDescriptionsTableViewCell.rawValue, for: indexPath) as! TwoTopTitlesAndTwoDescriptionsTableViewCell
+            if let attack = viewModel.attack, let defense = viewModel.defense { cell.updateText(leftTitle: Strings.attack, leftDescription: String(attack), rightTitle: Strings.defense, rightTitleDescription: String(defense)) }
+            return cell
+            
+        }
     }
     
 }

@@ -25,6 +25,8 @@
 		AC6EE6EF25D4C5F200C4A1CA /* CardImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6EE6EE25D4C5F200C4A1CA /* CardImageTableViewCell.swift */; };
 		AC6EE6F725D4DF1700C4A1CA /* TopTitleWithDescriptionTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6EE6F625D4DF1700C4A1CA /* TopTitleWithDescriptionTextTableViewCell.swift */; };
 		AC6EE6FC25D4F1A400C4A1CA /* TwoTopTitlesAndTwoDescriptionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6EE6FB25D4F1A400C4A1CA /* TwoTopTitlesAndTwoDescriptionsTableViewCell.swift */; };
+		AC6EE70125D5124E00C4A1CA /* CardDetailCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6EE70025D5124E00C4A1CA /* CardDetailCellType.swift */; };
+		AC6EE70C25D51E1700C4A1CA /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6EE70B25D51E1700C4A1CA /* Strings.swift */; };
 		ACB38F1925D39F49001CA4E9 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB38F1825D39F49001CA4E9 /* CardViewModel.swift */; };
 		D4CA2034DAF863D18B677D3D /* Pods_YugiohCardDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E854AF209D9C54AE318CAC6F /* Pods_YugiohCardDB.framework */; };
 /* End PBXBuildFile section */
@@ -74,6 +76,8 @@
 		AC6EE6EE25D4C5F200C4A1CA /* CardImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImageTableViewCell.swift; sourceTree = "<group>"; };
 		AC6EE6F625D4DF1700C4A1CA /* TopTitleWithDescriptionTextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTitleWithDescriptionTextTableViewCell.swift; sourceTree = "<group>"; };
 		AC6EE6FB25D4F1A400C4A1CA /* TwoTopTitlesAndTwoDescriptionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoTopTitlesAndTwoDescriptionsTableViewCell.swift; sourceTree = "<group>"; };
+		AC6EE70025D5124E00C4A1CA /* CardDetailCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailCellType.swift; sourceTree = "<group>"; };
+		AC6EE70B25D51E1700C4A1CA /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		ACB38F1825D39F49001CA4E9 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		DCB7477B82C8B7F70ECE979F /* Pods-YugiohCardDBTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YugiohCardDBTests.debug.xcconfig"; path = "Target Support Files/Pods-YugiohCardDBTests/Pods-YugiohCardDBTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E80B4B8014D4B4CCC1358178 /* Pods-YugiohCardDB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YugiohCardDB.debug.xcconfig"; path = "Target Support Files/Pods-YugiohCardDB/Pods-YugiohCardDB.debug.xcconfig"; sourceTree = "<group>"; };
@@ -203,6 +207,8 @@
 				2C5249F025BFBB9500461C37 /* CardData.swift */,
 				ACB38F1825D39F49001CA4E9 /* CardViewModel.swift */,
 				AC6EE6E525D49C5800C4A1CA /* CardType.swift */,
+				AC6EE70025D5124E00C4A1CA /* CardDetailCellType.swift */,
+				AC6EE70B25D51E1700C4A1CA /* Strings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -487,10 +493,12 @@
 				ACB38F1925D39F49001CA4E9 /* CardViewModel.swift in Sources */,
 				2C5249B425BFA80E00461C37 /* AppDelegate.swift in Sources */,
 				AC6EE6FC25D4F1A400C4A1CA /* TwoTopTitlesAndTwoDescriptionsTableViewCell.swift in Sources */,
+				AC6EE70C25D51E1700C4A1CA /* Strings.swift in Sources */,
 				2C5249E825BFBB1500461C37 /* YGOPRODeckService.swift in Sources */,
 				2C5249B625BFA80E00461C37 /* SceneDelegate.swift in Sources */,
 				AC172E4E25D3EAE500D3F10E /* CardDetailViewController.swift in Sources */,
 				AC6EE6F725D4DF1700C4A1CA /* TopTitleWithDescriptionTextTableViewCell.swift in Sources */,
+				AC6EE70125D5124E00C4A1CA /* CardDetailCellType.swift in Sources */,
 				AC6EE6DD25D4949000C4A1CA /* CardDetailView.swift in Sources */,
 				AC6EE6E625D49C5800C4A1CA /* CardType.swift in Sources */,
 			);
