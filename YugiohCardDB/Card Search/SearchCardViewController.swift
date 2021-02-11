@@ -90,7 +90,6 @@ class SearchCardViewController: UIViewController {
     private var activityIndicatorView: UIActivityIndicatorView?
     
     //MARK: - Methods
-    
     private func showActivityIndicator() {
         if activityIndicatorView == nil {
             activityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: view.center.x - 25, y: view.center.y - 25, width: 50, height: 50))

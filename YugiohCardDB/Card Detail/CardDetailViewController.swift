@@ -62,10 +62,10 @@ class CardDetailViewController: UIViewController {
     
     private func registerCells() {
         cardDetailTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        cardDetailTableView.register(CardImageTableViewCell.self, forCellReuseIdentifier: "cardImageCell")
-        cardDetailTableView.register(TopTitleWithDescriptionTextTableViewCell.self, forCellReuseIdentifier: "textWithDescriptionCell")
-        cardDetailTableView.register(TwoTopTitlesAndTwoDescriptionsTableViewCell.self, forCellReuseIdentifier: "twoTopTitlesAndTwoDescriptionsTableViewCell")
-        cardDetailTableView.register(TopTitleWithDescriptionTextTableViewCell.self, forCellReuseIdentifier: "detailTextWithDescriptionCell")
+        cardDetailTableView.register(CardImageTableViewCell.self, forCellReuseIdentifier: CardDetailsCellId.cardImageCell.rawValue)
+        cardDetailTableView.register(TopTitleWithDescriptionTextTableViewCell.self, forCellReuseIdentifier: CardDetailsCellId.textWithDescriptionCell.rawValue)
+        cardDetailTableView.register(TwoTopTitlesAndTwoDescriptionsTableViewCell.self, forCellReuseIdentifier: CardDetailsCellId.twoTopTitlesAndTwoDescriptionsTableViewCell.rawValue)
+        cardDetailTableView.register(TopTitleWithDescriptionTextTableViewCell.self, forCellReuseIdentifier: CardDetailsCellId.detailTextWithDescriptionCell.rawValue)
     }
     
     //MARK: Views
