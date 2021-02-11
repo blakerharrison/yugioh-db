@@ -17,9 +17,9 @@ struct CardViewModel {
     let description: String
     var attack: Int?
     var defense: Int?
-    var level: Int?
+    var level: Int? //
     var race: String?
-    var attribute: String?
+    var attribute: String? //
     
     init(_ cardData: CardData? = nil) {
         id = String((cardData?.id ?? 0))

@@ -33,13 +33,12 @@ class CardImageTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     
-    func loadImage(with viewModel: CardViewModel) {
+    func loadImage(with imageUrl: String) {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            self?.cardImageView.sd_setImage(with: URL(string: viewModel.imageUrl))
+            self?.cardImageView.sd_setImage(with: URL(string: imageUrl))
         }
     }
     
