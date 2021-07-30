@@ -10,22 +10,23 @@ import UIKit
 class SearchCardViewController: UIViewController {
     
     //MARK: - Properties
-    var searchResults: [CardViewModel] = []
-    var searchTask: DispatchWorkItem?
-    var isSearchBarEmpty: Bool { return searchController.searchBar.text?.isEmpty ?? true }
-    var isLoading = false
-
+    private var searchResults: [CardViewModel] = []
+    private var searchTask: DispatchWorkItem?
+    private var isSearchBarEmpty: Bool { return searchController.searchBar.text?.isEmpty ?? true }
+    
     //MARK: - Life Cycle
     override func loadView() {
         super.loadView()
         addSubviews()
         setUpConstraints()
-      }
-
+        showSearchSuggestionLabel()
+    }
+    
     //MARK: Setups
     private func addSubviews() {
         view.addSubview(searchTableView)
         searchTableView.addSubview(noResultsLabel)
+        searchTableView.addSubview(searchSuggestionLabel)
         setupSearchController()
         setupTableView()
         setupSearchView()
@@ -63,14 +64,19 @@ class SearchCardViewController: UIViewController {
             searchTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
             noResultsLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            noResultsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            noResultsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            searchSuggestionLabel.topAnchor.constraint(equalTo: view.topAnchor),
+            searchSuggestionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            searchSuggestionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            searchSuggestionLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -195)
         ])
     }
     
     //MARK: Views
     private let searchController = UISearchController(searchResultsController: nil)
-
-    private var searchTableView: UITableView = {
+    
+    private lazy var searchTableView: UITableView = {
         var tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
@@ -87,7 +93,29 @@ class SearchCardViewController: UIViewController {
         return label
     }()
     
+    private lazy var searchSuggestionLabel: UILabel = {
+        var label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = Strings.searchSuggestion
+        label.textColor = .lightGray
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        return label
+    }()
+    
     private var activityIndicatorView: UIActivityIndicatorView?
+    
+    //MARK: - Handlers
+    // TODO: Create HANDLE SUCCESS
+    
+    func handleError(_ error: Error? = nil) {
+        searchResults.removeAll()
+        DispatchQueue.main.async { [weak self] in
+            self?.searchTableView.reloadData()
+            self?.showEmptyState()
+        }
+    }
     
     //MARK: - Methods
     private func showActivityIndicator() {
@@ -103,7 +131,19 @@ class SearchCardViewController: UIViewController {
     private func hideActivityIndicator() {
         activityIndicatorView = nil
     }
-
+    
+    private func showSearchSuggestionLabel() {
+        searchSuggestionLabel.isHidden = false
+        searchTableView.separatorStyle = .none
+        searchTableView.isUserInteractionEnabled = false
+    }
+    
+    private func hideSearchSuggestionLabel() {
+        searchSuggestionLabel.isHidden = true
+        searchTableView.separatorStyle = .singleLine
+        searchTableView.isUserInteractionEnabled = true
+    }
+    
     private func showEmptyState() {
         noResultsLabel.isHidden = false
         searchTableView.separatorStyle = .none
@@ -127,6 +167,10 @@ class SearchCardViewController: UIViewController {
             return
         }
         
+        updateSearchResults(cardsData)
+    }
+    
+    fileprivate func updateSearchResults(_ cardsData: CardsData) {
         var result = cardsData.data
         
         if result.count >= 50 {
@@ -138,21 +182,8 @@ class SearchCardViewController: UIViewController {
         }
         
         DispatchQueue.main.async { [weak self] in
+            self?.searchSuggestionLabel.isHidden = result.isEmpty ? false : true
             self?.searchTableView.reloadData()
-            self?.isLoading = false
-        }
-        
-    }
-    
-    //MARK: - Handlers
-    // TODO: Create HANDLE SUCCESS
-    
-    func handleError(_ error: Error? = nil) {
-        searchResults.removeAll()
-        isLoading = false
-        DispatchQueue.main.async { [weak self] in
-            self?.searchTableView.reloadData()
-            self?.showEmptyState()
         }
     }
 }
@@ -160,24 +191,24 @@ class SearchCardViewController: UIViewController {
 //MARK: - UITableViewDataSource
 extension SearchCardViewController: UITableViewDataSource {
     
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return searchResults.count
-  }
-    
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cellId")
-
-    if !searchResults.isEmpty {
-        hideEmptyState()
-        cell.textLabel?.text = searchResults[indexPath.row].name
-        cell.detailTextLabel?.text = searchResults[indexPath.row].displayTypeName
-    } else {
-        showEmptyState()
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return searchResults.count
     }
     
-    return cell
-  }
-
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cellId")
+        
+        if !searchResults.isEmpty {
+            hideEmptyState()
+            cell.textLabel?.text = searchResults[indexPath.row].name
+            cell.detailTextLabel?.text = searchResults[indexPath.row].displayTypeName
+        } else {
+            showEmptyState()
+        }
+        
+        return cell
+    }
+    
 }
 
 extension SearchCardViewController: UITableViewDelegate {
@@ -186,12 +217,10 @@ extension SearchCardViewController: UITableViewDelegate {
                    didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if !isLoading {
-            searchController.searchBar.resignFirstResponder()
-            let cardDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "cardDetailViewController") as! CardDetailViewController
-            cardDetailVC.cardViewModel = searchResults[indexPath.row]
-            self.navigationController?.pushViewController(cardDetailVC, animated: true)
-        }
+        searchController.searchBar.resignFirstResponder()
+        let cardDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "cardDetailViewController") as! CardDetailViewController
+        cardDetailVC.cardViewModel = searchResults[indexPath.row]
+        self.navigationController?.pushViewController(cardDetailVC, animated: true)
     }
     
 }
@@ -199,27 +228,28 @@ extension SearchCardViewController: UITableViewDelegate {
 //MARK: - UISearchResultsUpdating
 extension SearchCardViewController: UISearchResultsUpdating {
     
-  func updateSearchResults(for searchController: UISearchController) {
-    
-    if !isSearchBarEmpty {
-        searchResults.removeAll()
-        searchTask?.cancel()
-        let task = DispatchWorkItem { [weak self] in
-            YGOPRODeckService.fuzzySearch(with: searchController.searchBar.text ?? "", completion: self!.buildViewModels)
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        if !isSearchBarEmpty {
+            searchResults.removeAll()
+            searchTask?.cancel()
+            let task = DispatchWorkItem { [weak self] in
+                YGOPRODeckService.fuzzySearch(with: searchController.searchBar.text ?? "", completion: self!.buildViewModels)
+            }
+            
+            self.searchTask = task
+            
+            DispatchQueue.main.asyncAfter(
+                deadline: DispatchTime.now() + 0.5,
+                execute: task
+            )
+        } else {
+            searchSuggestionLabel.isHidden = false
+            searchTableView.separatorStyle = .none
+            searchResults.removeAll()
+            searchTask?.cancel()
+            searchTableView.reloadData()
         }
-        
-        self.searchTask = task
-        
-        DispatchQueue.main.asyncAfter(
-            deadline: DispatchTime.now() + 0.5,
-            execute: task
-        )
-        isLoading = true
-    } else {
-        searchResults.removeAll()
-        searchTask?.cancel()
-        searchTableView.reloadData()
     }
-  }
-
+    
 }

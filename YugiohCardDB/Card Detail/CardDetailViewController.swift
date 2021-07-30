@@ -8,17 +8,17 @@
 import UIKit
 
 class CardDetailViewController: UIViewController {
-
+    
     //MARK: - Properties
     var cardViewModel: CardViewModel?
-
+    
     private let monsterCardDetailsCells: [CardDetailCellType] = [
         .image,
         .name,
         .levelAndAttribute,
         .raceAndType,
-        .description,
-        .attackAndDefense
+        .attackAndDefense,
+        .description
     ]
     
     private let spellOrTrapCardDetailsCells: [CardDetailCellType] = [
@@ -89,7 +89,7 @@ extension CardDetailViewController: UITableViewDataSource {
         let cellTypes = viewModel.type == CardType.monster ? monsterCardDetailsCells : spellOrTrapCardDetailsCells
         return getConfiguredCell(with: tableView, cardDetailCellType: cellTypes[indexPath.row], viewModel: viewModel, indexPath: indexPath)
     }
-
+    
 }
 
 // MARK: - UITableViewDelegate
@@ -109,6 +109,11 @@ extension CardDetailViewController {
         
         switch cardDetailCellType {
         
+        case .attackAndDefense:
+            let cell = tableView.dequeueReusableCell(withIdentifier: CardDetailsCellId.twoTopTitlesAndTwoDescriptionsTableViewCell.rawValue, for: indexPath) as! TwoTopTitlesAndTwoDescriptionsTableViewCell
+            if let attack = viewModel.attack, let defense = viewModel.defense { cell.updateText(leftTitle: Strings.attack, leftDescription: String(attack), rightTitle: Strings.defense, rightTitleDescription: String(defense)) }
+            return cell
+            
         case .image:
             let cell = tableView.dequeueReusableCell(withIdentifier: CardDetailsCellId.cardImageCell.rawValue, for: indexPath) as! CardImageTableViewCell
             cell.loadImage(with: viewModel.imageUrl)
@@ -132,11 +137,6 @@ extension CardDetailViewController {
         case .description:
             let cell = tableView.dequeueReusableCell(withIdentifier: CardDetailsCellId.detailTextWithDescriptionCell.rawValue, for: indexPath) as! TopTitleWithDescriptionTextTableViewCell
             cell.updateText(with: Strings.description, description: viewModel.description)
-            return cell
-            
-        case .attackAndDefense:
-            let cell = tableView.dequeueReusableCell(withIdentifier: CardDetailsCellId.twoTopTitlesAndTwoDescriptionsTableViewCell.rawValue, for: indexPath) as! TwoTopTitlesAndTwoDescriptionsTableViewCell
-            if let attack = viewModel.attack, let defense = viewModel.defense { cell.updateText(leftTitle: Strings.attack, leftDescription: String(attack), rightTitle: Strings.defense, rightTitleDescription: String(defense)) }
             return cell
             
         }

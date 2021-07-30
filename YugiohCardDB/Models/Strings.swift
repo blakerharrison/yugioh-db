@@ -26,4 +26,9 @@ struct Strings {
     
     //MARK: Errors
     static let noResultsFound = "No results found."
+    
+    //MARK: Search Suggestion
+    static let searchSuggestion = """
+    Search any Yu-Gi-Oh! card! Try searching "Magician" or "Blue-Eyes" to see search results and browse the card details.
+    """
 }
