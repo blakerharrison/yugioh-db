@@ -21,6 +21,7 @@
 		9B22E0D7E0076053D8A955A2 /* Pods_YugiohCardDBTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C834B826A06BD0888CCBAB1 /* Pods_YugiohCardDBTests.framework */; };
 		AC172E4E25D3EAE500D3F10E /* CardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC172E4D25D3EAE500D3F10E /* CardDetailViewController.swift */; };
 		AC65A3D826F66AD500A6D3F7 /* YGOPRODeckErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC65A3D726F66AD500A6D3F7 /* YGOPRODeckErrorType.swift */; };
+		AC65A3DD26F672D400A6D3F7 /* yugioh_cards_v7.json in Resources */ = {isa = PBXBuildFile; fileRef = AC65A3DC26F672D400A6D3F7 /* yugioh_cards_v7.json */; };
 		AC6EE6E625D49C5800C4A1CA /* CardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6EE6E525D49C5800C4A1CA /* CardType.swift */; };
 		AC6EE6EF25D4C5F200C4A1CA /* CardImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6EE6EE25D4C5F200C4A1CA /* CardImageTableViewCell.swift */; };
 		AC6EE6F725D4DF1700C4A1CA /* TopTitleWithDescriptionTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6EE6F625D4DF1700C4A1CA /* TopTitleWithDescriptionTextTableViewCell.swift */; };
@@ -72,6 +73,7 @@
 		93ED5A3A673406F15D325FD4 /* Pods_YugiohCardDB_YugiohCardDBUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YugiohCardDB_YugiohCardDBUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC172E4D25D3EAE500D3F10E /* CardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailViewController.swift; sourceTree = "<group>"; };
 		AC65A3D726F66AD500A6D3F7 /* YGOPRODeckErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YGOPRODeckErrorType.swift; sourceTree = "<group>"; };
+		AC65A3DC26F672D400A6D3F7 /* yugioh_cards_v7.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = yugioh_cards_v7.json; sourceTree = "<group>"; };
 		AC6EE6E525D49C5800C4A1CA /* CardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardType.swift; sourceTree = "<group>"; };
 		AC6EE6EE25D4C5F200C4A1CA /* CardImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImageTableViewCell.swift; sourceTree = "<group>"; };
 		AC6EE6F625D4DF1700C4A1CA /* TopTitleWithDescriptionTextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTitleWithDescriptionTextTableViewCell.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 		AC89D6A526BA01A8000E581D /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				AC65A3DC26F672D400A6D3F7 /* yugioh_cards_v7.json */,
 				AC6EE70B25D51E1700C4A1CA /* Strings.swift */,
 			);
 			path = Shared;
@@ -366,6 +369,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C5249C025BFA81100461C37 /* LaunchScreen.storyboard in Resources */,
+				AC65A3DD26F672D400A6D3F7 /* yugioh_cards_v7.json in Resources */,
 				2C5249BD25BFA81100461C37 /* Assets.xcassets in Resources */,
 				2C5249BB25BFA80E00461C37 /* Main.storyboard in Resources */,
 			);
