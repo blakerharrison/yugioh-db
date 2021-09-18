@@ -10,6 +10,7 @@ import Foundation
 struct CardViewModel {
     let id: String
     let name: String
+    let searchName: String
     let imageUrl: String
     let imageUrlSmall: String
     let type: CardType
@@ -17,13 +18,16 @@ struct CardViewModel {
     let description: String
     var attack: Int?
     var defense: Int?
-    var level: Int? //
+    var level: Int?
     var race: String?
-    var attribute: String? //
+    var attribute: String?
     
     init(_ cardData: CardData? = nil) {
         id = String((cardData?.id ?? 0))
         name = cardData?.name ?? ""
+        searchName = cardData?.name
+            .lowercased()
+            .replacingOccurrences(of: "-", with: " ") ?? ""
         imageUrl = cardData?.card_images[0].image_url ?? ""
         imageUrlSmall = cardData?.card_images[0].image_url_small ?? ""
         displayTypeName = cardData?.type ?? ""

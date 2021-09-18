@@ -25,6 +25,7 @@ class CacheManager {
                         for cards in result {
                             cardsViewModels.append(CardViewModel(cards))
                         }
+                        cacheAllCards(cards: cardsViewModels)
                         completionHandler(nil)
                     } catch {
                         //TODO: Pass Error

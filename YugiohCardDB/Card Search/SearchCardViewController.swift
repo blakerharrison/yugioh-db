@@ -22,19 +22,8 @@ class SearchCardViewController: UIViewController {
     }
     
     private func loadAllCards() {
-        //TODO: handle error scenario
-        YGOPRODeckService.getAllCards {[weak self] (cardsData, error) in
-            if let cards = cardsData {
-                let result = cards.data
-                for cards in result {
-                    self?.allCards.append(CardViewModel(cards))
-                    self?.filteredCards = self?.allCards ?? []
-                }
-                DispatchQueue.main.async { [weak self] in
-                    self?.searchTableView.reloadData()
-                }
-            }
-        }
+        allCards = CacheManager.getAllCards()
+        filteredCards = allCards
     }
     
     private func addSubviews() {
@@ -141,7 +130,6 @@ extension SearchCardViewController: UITableViewDataSource {
         
         return cell
     }
-    
 }
 
 extension SearchCardViewController: UITableViewDelegate {
@@ -164,7 +152,7 @@ extension SearchCardViewController: UISearchResultsUpdating {
         filteredCards = allCards
         if let searchText = searchController.searchBar.text {
             if searchText.isEmpty == false {
-                filteredCards = allCards.filter({$0.name.contains(searchText)})
+                filteredCards = allCards.filter({$0.searchName.contains(searchText.lowercased())})
             }
             searchTableView.reloadData()
         }
