@@ -234,7 +234,7 @@ extension SearchCardViewController: UISearchResultsUpdating {
             searchResults.removeAll()
             searchTask?.cancel()
             let task = DispatchWorkItem { [weak self] in
-                YGOPRODeckService.fuzzySearch(with: searchController.searchBar.text ?? "", completion: self!.buildViewModels)
+                YGOPRODeckService.searchCards(with: searchController.searchBar.text ?? "", completion: self!.buildViewModels)
             }
             
             self.searchTask = task

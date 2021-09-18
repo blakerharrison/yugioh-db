@@ -159,16 +159,17 @@
 		2C5249B225BFA80E00461C37 /* YugiohCardDB */ = {
 			isa = PBXGroup;
 			children = (
-				AC172E4C25D3EABA00D3F10E /* Card Detail */,
-				AC172E4825D3EA4300D3F10E /* Card Search */,
-				2C5249EF25BFBB8000461C37 /* Models */,
-				2C5249E625BFBB0000461C37 /* Services */,
 				2C5249B325BFA80E00461C37 /* AppDelegate.swift */,
 				2C5249B525BFA80E00461C37 /* SceneDelegate.swift */,
 				2C5249B925BFA80E00461C37 /* Main.storyboard */,
 				2C5249BC25BFA81100461C37 /* Assets.xcassets */,
 				2C5249BE25BFA81100461C37 /* LaunchScreen.storyboard */,
 				2C5249C125BFA81100461C37 /* Info.plist */,
+				AC89D6A526BA01A8000E581D /* Shared */,
+				AC172E4C25D3EABA00D3F10E /* Card Detail */,
+				AC172E4825D3EA4300D3F10E /* Card Search */,
+				2C5249EF25BFBB8000461C37 /* Models */,
+				2C5249E625BFBB0000461C37 /* Services */,
 			);
 			path = YugiohCardDB;
 			sourceTree = "<group>";
@@ -206,7 +207,6 @@
 				ACB38F1825D39F49001CA4E9 /* CardViewModel.swift */,
 				AC6EE6E525D49C5800C4A1CA /* CardType.swift */,
 				AC6EE70025D5124E00C4A1CA /* CardDetailCellType.swift */,
-				AC6EE70B25D51E1700C4A1CA /* Strings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -244,6 +244,14 @@
 				AC6EE6FB25D4F1A400C4A1CA /* TwoTopTitlesAndTwoDescriptionsTableViewCell.swift */,
 			);
 			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		AC89D6A526BA01A8000E581D /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				AC6EE70B25D51E1700C4A1CA /* Strings.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

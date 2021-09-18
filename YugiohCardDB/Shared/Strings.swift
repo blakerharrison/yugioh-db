@@ -31,4 +31,7 @@ struct Strings {
     static let searchSuggestion = """
     Search any Yu-Gi-Oh! card! Try searching "Magician" or "Blue-Eyes" to see search results and browse the card details.
     """
+    
+    //MARK: URL
+    static let host = "db.ygoprodeck.com"
 }
