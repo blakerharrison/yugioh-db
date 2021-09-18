@@ -20,9 +20,29 @@ class SearchCardViewController: UIViewController {
         addSubviews()
         setUpConstraints()
         showSearchSuggestionLabel()
+        getCards()
     }
     
     //MARK: Setups
+    private func getCards() {
+        YGOPRODeckService.getAllCards {[weak self] (cardsData, error) in
+            
+            if let cards = cardsData {
+                let result = cards.data
+                
+                for cards in result {
+                    self?.searchResults.append(CardViewModel(cards))
+                }
+                
+                DispatchQueue.main.async { [weak self] in
+                    self?.searchSuggestionLabel.isHidden = result.isEmpty ? false : true
+                    self?.searchTableView.reloadData()
+                }
+            }
+            
+        }
+    }
+    
     private func addSubviews() {
         view.addSubview(searchTableView)
         searchTableView.addSubview(noResultsLabel)
