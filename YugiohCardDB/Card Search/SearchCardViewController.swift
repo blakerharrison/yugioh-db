@@ -9,48 +9,40 @@ import UIKit
 
 class SearchCardViewController: UIViewController {
     
-    //MARK: - Properties
-    private var searchResults: [CardViewModel] = []
+    private var allCards: [CardViewModel] = []
+    private var filteredCards: [CardViewModel] = []
     private var searchTask: DispatchWorkItem?
     private var isSearchBarEmpty: Bool { return searchController.searchBar.text?.isEmpty ?? true }
     
-    //MARK: - Life Cycle
     override func loadView() {
         super.loadView()
         addSubviews()
         setUpConstraints()
-        showSearchSuggestionLabel()
-        getCards()
+        loadAllCards()
     }
     
-    //MARK: Setups
-    private func getCards() {
+    private func loadAllCards() {
+        //TODO: handle error scenario
         YGOPRODeckService.getAllCards {[weak self] (cardsData, error) in
-            
             if let cards = cardsData {
                 let result = cards.data
-                
                 for cards in result {
-                    self?.searchResults.append(CardViewModel(cards))
+                    self?.allCards.append(CardViewModel(cards))
+                    self?.filteredCards = self?.allCards ?? []
                 }
-                
                 DispatchQueue.main.async { [weak self] in
-                    self?.searchSuggestionLabel.isHidden = result.isEmpty ? false : true
                     self?.searchTableView.reloadData()
                 }
             }
-            
         }
     }
     
     private func addSubviews() {
         view.addSubview(searchTableView)
         searchTableView.addSubview(noResultsLabel)
-        searchTableView.addSubview(searchSuggestionLabel)
         setupSearchController()
         setupTableView()
         setupSearchView()
-        setupNoResultsLabel()
     }
     
     func setupNoResultsLabel() {
@@ -60,6 +52,7 @@ class SearchCardViewController: UIViewController {
     func setupSearchView() {
         navigationItem.searchController = searchController
         navigationItem.title = Strings.yugiohDb
+        navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
     }
     
@@ -73,6 +66,7 @@ class SearchCardViewController: UIViewController {
     func setupTableView() {
         searchTableView.dataSource = self
         searchTableView.delegate = self
+        searchTableView.keyboardDismissMode = .onDrag
         searchTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
@@ -85,15 +79,9 @@ class SearchCardViewController: UIViewController {
             
             noResultsLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             noResultsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
-            searchSuggestionLabel.topAnchor.constraint(equalTo: view.topAnchor),
-            searchSuggestionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
-            searchSuggestionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
-            searchSuggestionLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -195)
         ])
     }
     
-    //MARK: Views
     private let searchController = UISearchController(searchResultsController: nil)
     
     private lazy var searchTableView: UITableView = {
@@ -112,58 +100,15 @@ class SearchCardViewController: UIViewController {
         label.isHidden = true
         return label
     }()
-    
-    private lazy var searchSuggestionLabel: UILabel = {
-        var label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = Strings.searchSuggestion
-        label.textColor = .lightGray
-        label.font = UIFont.systemFont(ofSize: 20)
-        label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
-        return label
-    }()
-    
-    private var activityIndicatorView: UIActivityIndicatorView?
-    
-    //MARK: - Handlers
-    // TODO: Create HANDLE SUCCESS
-    
+
     func handleError(_ error: Error? = nil) {
-        searchResults.removeAll()
+        filteredCards.removeAll()
         DispatchQueue.main.async { [weak self] in
             self?.searchTableView.reloadData()
             self?.showEmptyState()
         }
     }
-    
-    //MARK: - Methods
-    private func showActivityIndicator() {
-        if activityIndicatorView == nil {
-            activityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: view.center.x - 25, y: view.center.y - 25, width: 50, height: 50))
-            guard let activityIndicatorView = activityIndicatorView else { return }
-            activityIndicatorView.startAnimating()
-            activityIndicatorView.style = .large
-            view.addSubview(activityIndicatorView)
-        }
-    }
-    
-    private func hideActivityIndicator() {
-        activityIndicatorView = nil
-    }
-    
-    private func showSearchSuggestionLabel() {
-        searchSuggestionLabel.isHidden = false
-        searchTableView.separatorStyle = .none
-        searchTableView.isUserInteractionEnabled = false
-    }
-    
-    private func hideSearchSuggestionLabel() {
-        searchSuggestionLabel.isHidden = true
-        searchTableView.separatorStyle = .singleLine
-        searchTableView.isUserInteractionEnabled = true
-    }
-    
+
     private func showEmptyState() {
         noResultsLabel.isHidden = false
         searchTableView.separatorStyle = .none
@@ -175,53 +120,21 @@ class SearchCardViewController: UIViewController {
         searchTableView.separatorStyle = .singleLine
         searchTableView.isUserInteractionEnabled = true
     }
-    
-    private func buildViewModels(cardsData: CardsData?, error: Error?) {
-        guard let cardsData = cardsData else {
-            handleError(error)
-            return
-        }
-        
-        guard error == nil else {
-            handleError(error)
-            return
-        }
-        
-        updateSearchResults(cardsData)
-    }
-    
-    fileprivate func updateSearchResults(_ cardsData: CardsData) {
-        var result = cardsData.data
-        
-        if result.count >= 50 {
-            result = Array(cardsData.data[0..<50])
-        }
-        
-        for cardData in result {
-            searchResults.append(CardViewModel(cardData))
-        }
-        
-        DispatchQueue.main.async { [weak self] in
-            self?.searchSuggestionLabel.isHidden = result.isEmpty ? false : true
-            self?.searchTableView.reloadData()
-        }
-    }
 }
 
-//MARK: - UITableViewDataSource
 extension SearchCardViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchResults.count
+        return filteredCards.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cellId")
         
-        if !searchResults.isEmpty {
+        if !filteredCards.isEmpty {
             hideEmptyState()
-            cell.textLabel?.text = searchResults[indexPath.row].name
-            cell.detailTextLabel?.text = searchResults[indexPath.row].displayTypeName
+            cell.textLabel?.text = filteredCards[indexPath.row].name
+            cell.detailTextLabel?.text = filteredCards[indexPath.row].displayTypeName
         } else {
             showEmptyState()
         }
@@ -239,35 +152,20 @@ extension SearchCardViewController: UITableViewDelegate {
         
         searchController.searchBar.resignFirstResponder()
         let cardDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "cardDetailViewController") as! CardDetailViewController
-        cardDetailVC.cardViewModel = searchResults[indexPath.row]
+        cardDetailVC.cardViewModel = filteredCards[indexPath.row]
         self.navigationController?.pushViewController(cardDetailVC, animated: true)
     }
     
 }
 
-//MARK: - UISearchResultsUpdating
 extension SearchCardViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        
-        if !isSearchBarEmpty {
-            searchResults.removeAll()
-            searchTask?.cancel()
-            let task = DispatchWorkItem { [weak self] in
-                YGOPRODeckService.searchCards(with: searchController.searchBar.text ?? "", completion: self!.buildViewModels)
+        filteredCards = allCards
+        if let searchText = searchController.searchBar.text {
+            if searchText.isEmpty == false {
+                filteredCards = allCards.filter({$0.name.contains(searchText)})
             }
-            
-            self.searchTask = task
-            
-            DispatchQueue.main.asyncAfter(
-                deadline: DispatchTime.now() + 0.5,
-                execute: task
-            )
-        } else {
-            searchSuggestionLabel.isHidden = false
-            searchTableView.separatorStyle = .none
-            searchResults.removeAll()
-            searchTask?.cancel()
             searchTableView.reloadData()
         }
     }

@@ -34,4 +34,10 @@ struct Strings {
     
     //MARK: URL
     static let host = "db.ygoprodeck.com"
+    
+    //MARK: CardsJSON
+    static let allCardDataV7 = "yugioh_cards_v7"
+    
+    //MARK: File Extensions
+    static let jsonFileExtension = "json"
 }

@@ -13,7 +13,7 @@ class YGOPRODeckService {
     
     static func getAllCards(completion: @escaping CardsDataCompletion) {
         do {
-            if let filePath = Bundle.main.path(forResource: "yugioh_cards_v7", ofType: "json") {
+            if let filePath = Bundle.main.path(forResource: Strings.allCardDataV7, ofType: Strings.jsonFileExtension) {
                 let fileUrl = URL(fileURLWithPath: filePath)
                 let cardData = try Data(contentsOf: fileUrl)
                 DispatchQueue.global(qos: .userInitiated).async {
