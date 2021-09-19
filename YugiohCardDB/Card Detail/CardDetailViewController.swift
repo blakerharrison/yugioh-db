@@ -14,8 +14,8 @@ class CardDetailViewController: UIViewController {
     var cardViewModel: CardViewModel?
     
     private let monsterCardDetailsCells: [CardDetailCellType] = [
-        .image,
         .name,
+        .image,
         .levelAndAttribute,
         .raceAndType,
         .attackAndDefense,
@@ -23,8 +23,8 @@ class CardDetailViewController: UIViewController {
     ]
     
     private let spellOrTrapCardDetailsCells: [CardDetailCellType] = [
-        .image,
         .name,
+        .image,
         .raceAndType,
         .description,
     ]
