@@ -11,13 +11,7 @@ class SplashViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        CacheManager.loadAllCards { (error) in
-            if error == nil {
-                self.navigateToSeachCard()
-            } else {
-                //TODO: Create full stop error screen
-            }
-        }
+        YGOPRODeckService.getAllCards(completion: cacheCardData)
     }
     
     func navigateToSeachCard() {
@@ -27,6 +21,16 @@ class SplashViewController: UIViewController {
             searchViewControllerVC.modalTransitionStyle = .crossDissolve
             self.present(searchViewControllerVC, animated: true, completion: nil)
         }
+    }
+    
+    func cacheCardData(_ cardsViewModels: [CardViewModel]?, _ error: Error?) {
+        if error == nil, let cards = cardsViewModels {
+            CacheManager.cacheAllCards(cards)
+            navigateToSeachCard()
+        } else {
+            print("Error 🍒")
+        }
+        
     }
 
 }
