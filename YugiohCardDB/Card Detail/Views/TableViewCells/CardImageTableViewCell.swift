@@ -38,7 +38,9 @@ class CardImageTableViewCell: UITableViewCell {
     
     func loadImage(with imageUrl: String) {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            self?.cardImageView.sd_setImage(with: URL(string: imageUrl))
+            self?.cardImageView.sd_setImage(
+                with: URL(string: imageUrl),
+                placeholderImage: UIImage(named: "loadingCardImageGray"))
         }
     }
     

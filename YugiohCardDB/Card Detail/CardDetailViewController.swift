@@ -8,6 +8,7 @@
 import UIKit
 
 class CardDetailViewController: UIViewController {
+    private let imageCellSize: CGFloat = 500
     
     //MARK: - Properties
     var cardViewModel: CardViewModel?
@@ -96,7 +97,7 @@ extension CardDetailViewController: UITableViewDataSource {
 extension CardDetailViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if monsterCardDetailsCells[indexPath.row] == .image { return view.safeAreaLayoutGuide.layoutFrame.height }
+        if monsterCardDetailsCells[indexPath.row] == .image { return imageCellSize }
         return tableView.intrinsicContentSize.height
     }
     
@@ -108,7 +109,6 @@ extension CardDetailViewController {
     func getConfiguredCell(with tableView: UITableView, cardDetailCellType: CardDetailCellType, viewModel: CardViewModel, indexPath: IndexPath) -> UITableViewCell {
         
         switch cardDetailCellType {
-        
         case .attackAndDefense:
             let cell = tableView.dequeueReusableCell(withIdentifier: CardDetailsCellId.twoTopTitlesAndTwoDescriptionsTableViewCell.rawValue, for: indexPath) as! TwoTopTitlesAndTwoDescriptionsTableViewCell
             if let attack = viewModel.attack, let defense = viewModel.defense { cell.updateText(leftTitle: Strings.attack, leftDescription: String(attack), rightTitle: Strings.defense, rightTitleDescription: String(defense)) }
