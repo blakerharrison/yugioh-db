@@ -6,13 +6,13 @@
 //
 
 import UIKit
-import yugopro
+import YGOPRODeckClient
 
 class SplashViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        YGOPRODeckService.getAllCards(completion: fetchCardsCompletionHandler)
+        YGOPRODeckClient.getAllCards(completion: fetchCardsCompletionHandler)
     }
     
     func navigateToSeachCard() {
