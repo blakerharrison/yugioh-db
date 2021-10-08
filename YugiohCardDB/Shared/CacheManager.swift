@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import yugopro
 
 class CacheManager {
     private static let cache = NSCache<NSString, NSArray>()

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import yugopro
 
 struct CardViewModel {
     let id: String
