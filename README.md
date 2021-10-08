@@ -1,4 +1,4 @@
-## YugiohDB
+## Yugioh DB
 
 ### Description
 An iOS application for searching and displaying card details from the trading card game "Yu-Gi-Oh!".
