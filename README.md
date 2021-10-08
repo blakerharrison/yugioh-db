@@ -1,7 +1,7 @@
 ## Yugioh DB
 
 ### Description
-An iOS application for searching and displaying card details from the trading card game "Yu-Gi-Oh!".
+An iOS application for searching and displaying card details from the trading card game "Yu-Gi-Oh!" built with UIKit.
 
 Official Website: https://www.yugioh-card.com/en/
 
