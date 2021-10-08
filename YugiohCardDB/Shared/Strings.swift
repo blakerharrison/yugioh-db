@@ -9,7 +9,7 @@ import Foundation
 
 struct Strings {
     //MARK: Navigation Titles
-    static let yugiohDb = "YugiohDB"
+    static let yugiohDb = "Yugioh DB"
     
     //MARK: Search Placeholder String
     static let searchCards = "Search Cards"

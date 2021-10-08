@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum YGOPRODeckError: Error {
+public enum YGOPRODeckError: Error {
     case noError
     case buildUrlFailure
     case noData

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import YGOPRODeckClient
 
 class CacheManager {
     private static let cache = NSCache<NSString, NSArray>()

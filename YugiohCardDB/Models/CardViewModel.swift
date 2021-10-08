@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import YGOPRODeckClient
 
 struct CardViewModel {
     let id: String

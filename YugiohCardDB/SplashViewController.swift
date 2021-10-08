@@ -6,12 +6,13 @@
 //
 
 import UIKit
+import YGOPRODeckClient
 
 class SplashViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        YGOPRODeckService.getAllCards(completion: cacheCardData)
+        YGOPRODeckClient.getAllCards(completion: fetchCardsCompletionHandler)
     }
     
     func navigateToSeachCard() {
@@ -23,15 +24,31 @@ class SplashViewController: UIViewController {
         }
     }
     
-    func cacheCardData(_ cardsViewModels: [CardViewModel]?, _ error: Error?) {
-        if error == nil, let cards = cardsViewModels {
-            CacheManager.cacheAllCards(cards)
-            navigateToSeachCard()
+    private func fetchCardsCompletionHandler(_ cardData: [CardData]?, _ error: Error?) {
+        if error == nil, let cardData = cardData, !cardData.isEmpty {
+            cacheCardData(getCardsViewModels(cardData))
         } else {
-            print("Error 🍒")
+            if let error = error {
+                print("\(error.localizedDescription)")
+            } else {
+                print("Unknown Error")
+            }
         }
-        
     }
-
+    
+    private func getCardsViewModels(_ cardsData: [CardData]?)-> [CardViewModel] {
+        var cardsViewModels: [CardViewModel] = []
+        if let cardsData = cardsData {
+            for card in cardsData {
+                cardsViewModels.append(CardViewModel(card))
+            }
+        }
+        return cardsViewModels
+    }
+    
+    private func cacheCardData(_ cardViewModels: [CardViewModel]) {
+        CacheManager.cacheAllCards(cardViewModels)
+        navigateToSeachCard()
+    }
 }
 
