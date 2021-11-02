@@ -1,0 +1,37 @@
+workflows:
+  yugioh-workflow:
+    name: Yugioh Pipeline
+    scripts:
+      - name: iOS test
+        script: |
+          xcode-project run-tests \
+              --workspace YugiohCardDB.xcworkspace \
+              --scheme YugiohCardDB
+              --device "iPhone 11"
+    publishing:
+      email: 
+        recipients:
+          - blakerh@protonmail.com 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
