@@ -25,8 +25,7 @@
 		AC6EE6FC25D4F1A400C4A1CA /* TwoTopTitlesAndTwoDescriptionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6EE6FB25D4F1A400C4A1CA /* TwoTopTitlesAndTwoDescriptionsTableViewCell.swift */; };
 		AC6EE70125D5124E00C4A1CA /* CardDetailCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6EE70025D5124E00C4A1CA /* CardDetailCellType.swift */; };
 		AC6EE70C25D51E1700C4A1CA /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6EE70B25D51E1700C4A1CA /* Strings.swift */; };
-		AC8B7709270FFF3600D94B9A /* YGOPRODeckClient.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC8B7708270FFF3600D94B9A /* YGOPRODeckClient.xcframework */; };
-		AC8B770A270FFF3600D94B9A /* YGOPRODeckClient.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AC8B7708270FFF3600D94B9A /* YGOPRODeckClient.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AC7DDB4F2731FDCA00DDDA8B /* YGOPRODeckClient in Frameworks */ = {isa = PBXBuildFile; productRef = AC7DDB4E2731FDCA00DDDA8B /* YGOPRODeckClient */; };
 		ACB38F1925D39F49001CA4E9 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB38F1825D39F49001CA4E9 /* CardViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,20 +45,6 @@
 			remoteInfo = YugiohCardDB;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		AC384829270FFB9E0010F5B8 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				AC8B770A270FFF3600D94B9A /* YGOPRODeckClient.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2C5249B025BFA80E00461C37 /* YugiohCardDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YugiohCardDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,7 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC8B7709270FFF3600D94B9A /* YGOPRODeckClient.xcframework in Frameworks */,
+				AC7DDB4F2731FDCA00DDDA8B /* YGOPRODeckClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,13 +253,15 @@
 				2C5249AD25BFA80E00461C37 /* Frameworks */,
 				2C5249AE25BFA80E00461C37 /* Resources */,
 				FF62B5BEDBC02C96F462DD47 /* [CP] Embed Pods Frameworks */,
-				AC384829270FFB9E0010F5B8 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = YugiohCardDB;
+			packageProductDependencies = (
+				AC7DDB4E2731FDCA00DDDA8B /* YGOPRODeckClient */,
+			);
 			productName = YugiohCardDB;
 			productReference = 2C5249B025BFA80E00461C37 /* YugiohCardDB.app */;
 			productType = "com.apple.product-type.application";
@@ -349,6 +336,9 @@
 				Base,
 			);
 			mainGroup = 2C5249A725BFA80E00461C37;
+			packageReferences = (
+				AC7DDB352731FAAC00DDDA8B /* XCRemoteSwiftPackageReference "ygoprodeck-client-package" */,
+			);
 			productRefGroup = 2C5249B125BFA80E00461C37 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -847,6 +837,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AC7DDB352731FAAC00DDDA8B /* XCRemoteSwiftPackageReference "ygoprodeck-client-package" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/blakerharrison/ygoprodeck-client-package.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AC7DDB4E2731FDCA00DDDA8B /* YGOPRODeckClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AC7DDB352731FAAC00DDDA8B /* XCRemoteSwiftPackageReference "ygoprodeck-client-package" */;
+			productName = YGOPRODeckClient;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2C5249A825BFA80E00461C37 /* Project object */;
 }

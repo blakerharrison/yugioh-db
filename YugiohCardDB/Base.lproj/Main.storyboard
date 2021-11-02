@@ -39,12 +39,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="R16-60-S5x"/>
                     <connections>
-                        <segue destination="lu7-bx-a7t" kind="presentation" modalPresentationStyle="overFullScreen" id="hL0-Rs-Uie"/>
+                        <segue destination="lu7-bx-a7t" kind="presentation" identifier="NavigationVC" modalPresentationStyle="overFullScreen" id="hL0-Rs-Uie"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wia-Rr-qjj" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1777" y="76"/>
+            <point key="canvasLocation" x="-809" y="76"/>
         </scene>
         <!--Card Detail View Controller-->
         <scene sceneID="ExT-Wa-YeV">
@@ -79,7 +79,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="meL-ry-o9y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-775" y="76"/>
+            <point key="canvasLocation" x="-14" y="76"/>
         </scene>
     </scenes>
     <resources>
