@@ -7,7 +7,6 @@ workflows:
           xcode-project run-tests \
               --workspace YugiohCardDB.xcworkspace \
               --scheme YugiohCardDB
-              --device "iPhone 11"
     publishing:
       email: 
         recipients:
